@@ -1,18 +1,35 @@
 package com.example.getmesocialservice.model;
 
+import org.springframework.data.annotation.Id;
+
+import java.util.Date;
+
 public class Album {
-    private int albumId;
+    @Id
+    private int id;
     private String name;
     private String description;
     private String coverPicUrl;
-
-    public int getAlbumId() {
-        return albumId;
+    private Date dateCreated;
+    public int getId() {
+        return id;
     }
 
-    public void setAlbumId(int albumId) {
-        this.albumId = albumId;
+    public void setId(int id) {
+        this.id = id;
     }
+
+
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
+
+
 
     public String getName() {
         return name;

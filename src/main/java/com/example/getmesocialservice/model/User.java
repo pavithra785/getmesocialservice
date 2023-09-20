@@ -1,27 +1,29 @@
 package com.example.getmesocialservice.model;
 
+import org.springframework.data.annotation.Id;
+
 public class User {
-    public int getUserId() {
-        return userId;
-    }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
-    private int userId;
+    @Id
+    private String id;
     private String name;
     private String address;
-    private int age;
-    private String profilePicUrl;
+    private String email;
+    private String profilePhotoUrl;
 
-    public User(String name, String address, int age, String profilePicUrl) {
+    public User(String name, String email, String profilePhotoUrl) {
         this.name = name;
-        this.address = address;
-        this.age = age;
-        this.profilePicUrl = profilePicUrl;
+        this.email = email;
+        this.profilePhotoUrl = profilePhotoUrl;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
     public String getName() {
         return name;
     }
@@ -30,27 +32,28 @@ public class User {
         this.name = name;
     }
 
-    public String getAddress() {
-        return address;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public int getAge() {
-        return age;
+    public String getAddress() { return address;}
+    public void setAddress(String address) {this.address = address;}
+    public String getprofilePhotoUrl() {
+        return profilePhotoUrl;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setprofilePhotoUrl(String profilePhotoUrl) {
+        this.profilePhotoUrl = profilePhotoUrl;
     }
 
-    public String getProfilePicUrl() {
-        return profilePicUrl;
-    }
 
-    public void setProfilePicUrl(String profilePicUrl) {
-        this.profilePicUrl = profilePicUrl;
-    }
+//    private int age;
+
+//    public int getAge() {return age;}
+//    public void setAge(int age) {this.age = age;}
+
 }

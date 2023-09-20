@@ -3,43 +3,53 @@ package com.example.getmesocialservice.resource;
 import com.example.getmesocialservice.model.Album;
 import com.example.getmesocialservice.model.User;
 import com.example.getmesocialservice.service.AlbumService;
-import com.example.getmesocialservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/album")
 public class AlbumResource {
 
     @Autowired
     private AlbumService albumService;
 
-    @GetMapping("/album")
+    @GetMapping
     public List<Album> getAlbumList(){
         return albumService.getAlbumList();
     }
 
-    @PostMapping("/album")
+    @PostMapping
     public Album saveAlbum(@RequestBody Album album){
         return  albumService.saveAlbum(album);
     }
 
 
-    @GetMapping("/album/{albumId}")
-    public Album getAlbumById( @PathVariable ("albumId") int albumId ){
+    @GetMapping("/find")
+    public Optional<Album> getAlbumById(@RequestParam(name = "albumId") String albumId) {
         return albumService.getAlbumById(albumId);
     }
 
-    @PutMapping("/album/{albumId}")
-    public Album updateAlbum( @PathVariable ("albumId") int albumId, @RequestBody Album album ){
-        return albumService.updateAlbum(albumId, album);
+    @PutMapping
+    public Album updateAlbum(@RequestBody Album album ){
+        return albumService.updateAlbum(album);
+    }
+
+    @DeleteMapping
+    public void deleteAlbum( @RequestParam (name = "albumid") String albumid ){
+        albumService.deleteAlbum(albumid);
     }
 
 
-    @DeleteMapping("/album")
-    public Album deleteAlbum( @RequestParam (name = "albumId") int albumId ){
-        return albumService.deleteAlbum(albumId);
-    }
+//    @PutMapping("/album/{albumId}")
+//    public Album updateAlbum( @PathVariable ("albumId") int albumId, @RequestBody Album album ){
+//        return albumService.updateAlbum(albumId, album);
+//    }
+
+//    @DeleteMapping("/album")
+//    public Album deleteAlbum( @RequestParam (name = "albumId") int albumId ){
+//        return albumService.deleteAlbum(albumId);
+//    }
 }
