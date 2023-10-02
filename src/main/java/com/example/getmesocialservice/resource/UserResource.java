@@ -18,7 +18,11 @@ public class UserResource {
     private UserService userService;
 
     @PostMapping
-    public User saveUser(@RequestBody @Valid User user){
+    public User saveUser(@RequestBody @Valid User user) throws RestrictedInfoException {
+
+        if (user.getName().equalsIgnoreCase("root")){
+            throw new RestrictedInfoException();
+        }
         return  userService.saveUser(user);
     }
 

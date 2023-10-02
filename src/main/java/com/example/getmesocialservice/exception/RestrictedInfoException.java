@@ -3,6 +3,6 @@ package com.example.getmesocialservice.exception;
 public class RestrictedInfoException extends Exception{
     @Override
     public String getMessage(){
-        return "Exception";
+        return "Invalid user name";
     }
 }
