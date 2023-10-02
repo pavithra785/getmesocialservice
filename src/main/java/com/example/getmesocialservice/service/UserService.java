@@ -32,6 +32,10 @@ public class UserService {
     public Optional<User> getById(String userId) {
         return userRepository.findById(userId);
     }
+
+    public List<User> getByName(String name) {
+       return userRepository.findByName(name);
+    }
 //    public User getUser(){
 //        return userRepository.getUser();
 //    }

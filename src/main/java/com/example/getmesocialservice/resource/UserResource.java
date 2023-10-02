@@ -1,10 +1,12 @@
 package com.example.getmesocialservice.resource;
 
+import com.example.getmesocialservice.exception.RestrictedInfoException;
 import com.example.getmesocialservice.model.User;
 import com.example.getmesocialservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,7 +18,7 @@ public class UserResource {
     private UserService userService;
 
     @PostMapping
-    public User saveUser(@RequestBody User user){
+    public User saveUser(@RequestBody @Valid User user){
         return  userService.saveUser(user);
     }
 
@@ -24,12 +26,17 @@ public class UserResource {
     public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
+
+
     @GetMapping("/find")
-    public Optional<User> getById(@RequestParam(name = "userId") String userId) {
-        return userService.getById(userId);
+    public List<User> getByName(@RequestParam(name = "name") String name) throws RestrictedInfoException {
+        if (name.equalsIgnoreCase("root")) {
+            throw new RestrictedInfoException();
+        }
+        return userService.getByName(name);
     }
     @PutMapping
-    public User updateUser(@RequestBody User user ){
+    public User updateUser(@RequestBody @Valid User user ){
         return userService.updateUser(user);
     }
 
@@ -56,5 +63,9 @@ public class UserResource {
 //
 
 //
+    //    @GetMapping("/find")
+//    public Optional<User> getById(@RequestParam(name = "userId") String userId) {
+//        return userService.getById(userId);
+//    }
 
 }

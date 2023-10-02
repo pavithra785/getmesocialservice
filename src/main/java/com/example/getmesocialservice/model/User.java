@@ -1,6 +1,11 @@
 package com.example.getmesocialservice.model;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.lang.NonNull;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 
 public class User {
 
@@ -8,7 +13,9 @@ public class User {
     private String id;
     private String name;
     private String address;
+    @Email
     private String email;
+    @NotEmpty
     private String profilePhotoUrl;
 
     public User(String name, String email, String profilePhotoUrl) {

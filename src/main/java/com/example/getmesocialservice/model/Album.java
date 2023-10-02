@@ -1,21 +1,51 @@
 package com.example.getmesocialservice.model;
 
+import com.example.getmesocialservice.validation.ValidName;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 
 import java.util.Date;
 
 public class Album {
     @Id
-    private int id;
+    private String id;
+
+    public Album(String name, String createdBy, String coverPhotoUrl, Date dateCreated) {
+        this.name = name;
+        this.createdBy = createdBy;
+        this.coverPhotoUrl = coverPhotoUrl;
+        this.dateCreated = dateCreated;
+    }
+
+    @Length(max = 10)
     private String name;
-    private String description;
-    private String coverPicUrl;
+
+    @ValidName
+    private String createdBy;
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getCoverPhotoUrl() {
+        return coverPhotoUrl;
+    }
+
+    public void setCoverPhotoUrl(String coverPhotoUrl) {
+        this.coverPhotoUrl = coverPhotoUrl;
+    }
+
+    private String coverPhotoUrl;
     private Date dateCreated;
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -39,21 +69,7 @@ public class Album {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getCoverPicUrl() {
-        return coverPicUrl;
-    }
-
-    public void setCoverPicUrl(String coverPicUrl) {
-        this.coverPicUrl = coverPicUrl;
-    }
 
 
 
