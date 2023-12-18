@@ -1,12 +1,16 @@
 package com.example.getmesocialservice.resource;
 
 import com.example.getmesocialservice.exception.RestrictedInfoException;
+import com.example.getmesocialservice.model.FirebaseUser;
 import com.example.getmesocialservice.model.User;
+import com.example.getmesocialservice.service.FirebaseService;
 import com.example.getmesocialservice.service.UserService;
+import com.google.firebase.auth.FirebaseAuthException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,18 +21,27 @@ public class UserResource {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private FirebaseService firebaseService;
     @PostMapping
-    public User saveUser(@RequestBody @Valid User user) throws RestrictedInfoException {
+    public User saveUser(@RequestBody @Valid User user, @RequestHeader(name="idToken")String idToken) throws RestrictedInfoException, IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser != null){
+            return  userService.saveUser(user);
 
-        if (user.getName().equalsIgnoreCase("root")){
-            throw new RestrictedInfoException();
         }
-        return  userService.saveUser(user);
+        return null;
     }
 
     @GetMapping
-    public List<User> getAllUsers() {
-        return userService.getAllUsers();
+    public List<User> getAllUsers(@RequestBody @Valid User user,@RequestHeader (name="idToken")String idToken) throws IOException, FirebaseAuthException {
+
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser != null){
+            return userService.getAllUsers();
+
+        }
+        return  null;
     }
 
 
