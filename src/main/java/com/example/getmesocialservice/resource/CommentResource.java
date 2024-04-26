@@ -55,7 +55,7 @@ public class CommentResource {
         return null;
     }
 
-    @DeleteMapping
+    @DeleteMappingcd
     public void deleteComment( @RequestParam (name = "commentId") String commentId,@RequestHeader(name="idToken")String idToken ) throws IOException, FirebaseAuthException {
         FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
         if(firebaseUser!=null){
