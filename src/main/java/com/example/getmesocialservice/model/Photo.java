@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class Photo {
 
-    public Photo(String albumId, String photoUrl, String createdBy, Date dateCreated) {
+    public Photo(String albumId, String photoUrl, String userEmail, Date dateCreated) {
         this.albumId = albumId;
         this.photoUrl = photoUrl;
-        this.createdBy = createdBy;
+        this.userEmail = userEmail;
         this.dateCreated = dateCreated;
     }
 
@@ -19,7 +19,7 @@ public class Photo {
     private String albumId;
     private String photoUrl;
     @ValidName
-    private String createdBy;
+    private String userEmail;
     private Date dateCreated;
 
     public int getId() {
@@ -46,12 +46,12 @@ public class Photo {
         this.photoUrl = photoUrl;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setUserEmail(String createdBy) {
+        this.userEmail = userEmail;
     }
 
     public Date getDateCreated() {

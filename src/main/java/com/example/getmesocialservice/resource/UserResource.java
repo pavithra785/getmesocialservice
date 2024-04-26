@@ -34,32 +34,40 @@ public class UserResource {
     }
 
     @GetMapping
-    public List<User> getAllUsers(@RequestBody @Valid User user,@RequestHeader (name="idToken")String idToken) throws IOException, FirebaseAuthException {
-
-        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
-        if (firebaseUser != null){
+    public List<User> getAllUsers() {
             return userService.getAllUsers();
-
-        }
-        return  null;
     }
 
 
     @GetMapping("/find")
-    public List<User> getByName(@RequestParam(name = "name") String name) throws RestrictedInfoException {
-        if (name.equalsIgnoreCase("root")) {
-            throw new RestrictedInfoException();
+    public List<User> getByName(@RequestHeader (name="idToken")String idToken,@RequestParam(name = "name") String name) throws RestrictedInfoException, IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser != null) {
+            if (name.equalsIgnoreCase("root")) {
+                throw new RestrictedInfoException();
+            }
+            return userService.getByName(name);
         }
-        return userService.getByName(name);
+        return null;
     }
+
     @PutMapping
-    public User updateUser(@RequestBody @Valid User user ){
-        return userService.updateUser(user);
+    public User updateUser(@RequestBody @Valid User user ,@RequestHeader (name="idToken")String idToken) throws IOException, FirebaseAuthException {
+            FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser != null){
+            return userService.updateUser(user);
+        }
+
+       return null;
     }
 
     @DeleteMapping
-    public void deleteUser( @RequestParam (name = "userId") String userId ){
-         userService.deleteUser(userId);
+    public void deleteUser(@RequestHeader (name="idToken")String idToken,@RequestParam (name = "userId") String userId ) throws IOException, FirebaseAuthException {
+        FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
+        if (firebaseUser != null){
+            userService.deleteUser(userId);
+        }
+
     }
 
 //    @GetMapping("/user")

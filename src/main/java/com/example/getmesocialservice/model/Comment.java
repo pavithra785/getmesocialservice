@@ -11,10 +11,10 @@ public class Comment {
     @Id
     private int id;
 
-    public Comment(String photoId, String message, String createdBy, Date dateCreated) {
+    public Comment(String photoId, String message, String userEmail, Date dateCreated) {
         this.photoId = photoId;
         this.message = message;
-        this.createdBy = createdBy;
+        this.userEmail = userEmail;
         this.dateCreated = dateCreated;
     }
 
@@ -22,7 +22,7 @@ public class Comment {
     @Length(min = 5)
     private String message;
     @ValidName
-    private String createdBy;
+    private String userEmail;
     private Date dateCreated;
 
     public int getId() {
@@ -49,12 +49,12 @@ public class Comment {
         this.message = message;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public Date getDateCreated() {

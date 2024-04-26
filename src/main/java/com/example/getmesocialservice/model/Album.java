@@ -10,25 +10,28 @@ public class Album {
     @Id
     private String id;
 
-    public Album(String name, String createdBy, String coverPhotoUrl, Date dateCreated) {
-        this.name = name;
-        this.createdBy = createdBy;
-        this.coverPhotoUrl = coverPhotoUrl;
-        this.dateCreated = dateCreated;
-    }
-
+    private String coverPhotoUrl;
+    private Date dateCreated;
     @Length(max = 10)
     private String name;
 
     @ValidName
-    private String createdBy;
-
-    public String getCreatedBy() {
-        return createdBy;
+    private String userEmail;
+    public Album(String name, String userEmail, String coverPhotoUrl, Date dateCreated) {
+        this.name = name;
+        this.userEmail = userEmail;
+        this.coverPhotoUrl = coverPhotoUrl;
+        this.dateCreated = dateCreated;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public String getCoverPhotoUrl() {
@@ -39,8 +42,6 @@ public class Album {
         this.coverPhotoUrl = coverPhotoUrl;
     }
 
-    private String coverPhotoUrl;
-    private Date dateCreated;
     public String getId() {
         return id;
     }
