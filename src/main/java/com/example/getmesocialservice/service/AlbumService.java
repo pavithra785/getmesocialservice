@@ -13,8 +13,8 @@ public class AlbumService {
 
     @Autowired
     private AlbumRepository albumRepository;
-    public List<Album> getAlbumList() {
-        return  albumRepository.findAll();
+    public List<Album> getAlbumList(String email) {
+        return  albumRepository.findAllByEmail(email);
     }
 
     public Album saveAlbum(Album album) {

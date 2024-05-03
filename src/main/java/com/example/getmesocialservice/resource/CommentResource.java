@@ -15,7 +15,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/comment")
 public class CommentResource {
@@ -55,7 +55,7 @@ public class CommentResource {
         return null;
     }
 
-    @DeleteMappingcd
+    @DeleteMapping
     public void deleteComment( @RequestParam (name = "commentId") String commentId,@RequestHeader(name="idToken")String idToken ) throws IOException, FirebaseAuthException {
         FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
         if(firebaseUser!=null){

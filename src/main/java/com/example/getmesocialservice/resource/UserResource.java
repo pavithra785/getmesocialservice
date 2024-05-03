@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 
 @RestController
 @RequestMapping("/api/users")
@@ -28,7 +29,6 @@ public class UserResource {
         FirebaseUser firebaseUser = firebaseService.authenticate(idToken);
         if (firebaseUser != null){
             return  userService.saveUser(user);
-
         }
         return null;
     }

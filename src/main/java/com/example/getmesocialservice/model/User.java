@@ -12,16 +12,16 @@ public class User {
     @Id
     private String id;
     private String name;
-    private String address;
+
     @Email
     private String email;
-    @NotEmpty
-    private String profilePhotoUrl;
 
-    public User(String name, String email, String profilePhotoUrl) {
+
+
+    public User(String id,String name, String email) {
         this.name = name;
         this.email = email;
-        this.profilePhotoUrl = profilePhotoUrl;
+        this.id= id;
     }
 
     public String getId() {
@@ -47,20 +47,7 @@ public class User {
         this.email = email;
     }
 
-    public String getAddress() { return address;}
-    public void setAddress(String address) {this.address = address;}
-    public String getprofilePhotoUrl() {
-        return profilePhotoUrl;
-    }
-
-    public void setprofilePhotoUrl(String profilePhotoUrl) {
-        this.profilePhotoUrl = profilePhotoUrl;
-    }
 
 
-//    private int age;
-
-//    public int getAge() {return age;}
-//    public void setAge(int age) {this.age = age;}
 
 }

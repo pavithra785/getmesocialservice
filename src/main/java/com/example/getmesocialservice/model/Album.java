@@ -12,7 +12,7 @@ public class Album {
 
     private String coverPhotoUrl;
     private Date dateCreated;
-    @Length(max = 10)
+
     private String name;
 
     @ValidName

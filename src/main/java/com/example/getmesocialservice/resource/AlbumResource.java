@@ -14,6 +14,7 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 
 @RestController
 @RequestMapping("/api/album")
@@ -26,8 +27,8 @@ public class AlbumResource {
     private FirebaseService firebaseService;
 
     @GetMapping
-    public List<Album> getAlbumList(){
-        return albumService.getAlbumList();
+    public List<Album> getAlbumList(@RequestParam(name = "email") String email){
+        return albumService.getAlbumList(email);
     }
 
     @PostMapping
