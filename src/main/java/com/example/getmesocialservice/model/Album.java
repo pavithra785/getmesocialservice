@@ -16,10 +16,10 @@ public class Album {
     private String name;
 
     @ValidName
-    private String userEmail;
+    private String email;
     public Album(String name, String userEmail, String coverPhotoUrl, Date dateCreated) {
         this.name = name;
-        this.userEmail = userEmail;
+        this.email = userEmail;
         this.coverPhotoUrl = coverPhotoUrl;
         this.dateCreated = dateCreated;
     }
@@ -27,11 +27,11 @@ public class Album {
 
 
     public String getUserEmail() {
-        return userEmail;
+        return email;
     }
 
     public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
+        this.email = userEmail;
     }
 
     public String getCoverPhotoUrl() {
