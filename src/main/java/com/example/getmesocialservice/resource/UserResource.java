@@ -24,7 +24,7 @@ public class UserResource {
     @Autowired
     private FirebaseService firebaseService;
     @PostMapping
-    public User saveUser(@RequestBody @Valid User user) throws RestrictedInfoException, IOException, FirebaseAuthException {
+    public User saveUser(@RequestBody User user) throws RestrictedInfoException, IOException, FirebaseAuthException {
             return  userService.saveUser(user);
     }
 
